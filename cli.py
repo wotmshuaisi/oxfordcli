@@ -1,8 +1,5 @@
-'''
-Created on Jun 6, 2017
-@author: reef425@gamil.com
-'''
 import curses
+import logging.config
 
 
 def main_program():
@@ -30,7 +27,12 @@ def main_program():
         myScreen.refresh()
 
 
+def initlogger():
+    logging.config.fileConfig("logger.conf")
+
+
 if __name__ == '__main__':
+    initlogger()
     try:
         myScreen = curses.initscr()
         main_program()

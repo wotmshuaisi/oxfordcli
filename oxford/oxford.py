@@ -3,20 +3,20 @@ from oxford.client import OxfordHTTPClient
 
 oxford_client = OxfordHTTPClient()
 
-word_desciption_format = """\033[30;42m{type}\033[0m
-phonetic spelling: \033[30;44m{ps}\033[0m
+word_desciption_format = """{type}
+phonetic spelling: {ps}
 senses: 
 {ss}
 """
 
 senses_format = """    {index}.
-    \033[31;40mshort definitions\033[0m:: {sd}
+    short definitions: {sd}
     definitions: {d}
     subsenses: {sub}"""
 
 sub_senses_format = """
         {index}.
-        \033[31;40mshort definitions\033[0m: {sd}
+        short definitions: {sd}
         definitions: {d}"""
 
 
@@ -43,4 +43,4 @@ def get_word_sense(word):
         temp_desc = temp_desc.format(
             type=word_type['type'], ps=", ".join(word_type['phoneticSpelling']), ss=temp_senses)
         result += temp_desc
-    print(result)
+    return result

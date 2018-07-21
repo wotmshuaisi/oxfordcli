@@ -1,16 +1,19 @@
 import curses
 from log.logger import initlogger
+from oxford import oxford
 
 
 def main_program():
     word = []
     key = ''
+    senses = ''
 
+    curses.init_pair(1, curses.COLOR_BLUE, curses.COLOR_BLACK)
     myScreen.erase()
-    myScreen.addstr(1, 1, 'Word:')
+    myScreen.addstr(1, 1, '> '  )
 
     while key != 27:
-        key = myScreen.getch(1, 6 + len(word))
+        key = myScreen.getch(1, 3 + len(word))
         myScreen.erase()
 
         if key == 127 and len(word) != 0:
@@ -22,14 +25,17 @@ def main_program():
         elif key == 9:
             # auto complete
             pass
-
-        myScreen.addstr(1, 1, 'Word:' + ''.join(word))
+        elif key == 10:
+            senses = oxford.get_word_sense(''.join(word))
+        myScreen.addstr(1, 1, '> ' + ''.join(word))
+        myScreen.addstr(2, 1, senses)
         myScreen.refresh()
 
 if __name__ == '__main__':
     initlogger()
     try:
         myScreen = curses.initscr()
+        curses.start_color()
         main_program()
     finally:
         curses.endwin()

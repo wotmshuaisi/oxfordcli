@@ -2,7 +2,7 @@ import requests
 import logging
 import json
 from config import config
-from oxford import filter
+from oxford import datafilter
 
 
 class OxfordHTTPClient(object):
@@ -38,4 +38,4 @@ class OxfordHTTPClient(object):
         status, r_data = self.send_request(r_url, self.basic_header)
         if status == False:
             return None
-        return filter.filter_word_sense(r_data)
+        return datafilter.filter_word_sense(r_data)

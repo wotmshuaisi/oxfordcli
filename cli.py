@@ -1,5 +1,5 @@
 import curses
-import logging.config
+from log.logger import initlogger
 
 
 def main_program():
@@ -25,11 +25,6 @@ def main_program():
 
         myScreen.addstr(1, 1, 'Word:' + ''.join(word))
         myScreen.refresh()
-
-
-def initlogger():
-    logging.config.fileConfig("logger.conf")
-
 
 if __name__ == '__main__':
     initlogger()

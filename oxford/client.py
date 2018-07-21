@@ -24,7 +24,7 @@ class OxfordHTTPClient(object):
     def send_request(self, url, headers):
         try:
             r_obj = requests.get(url, headers=headers)
-            logging.info("OxfordHTTPClient response" + r_obj.text)
+            logging.info("OxfordHTTPClient response" + str(r_obj.status_code))
             if r_obj.status_code == 200:
                 return True, r_obj.text
             else:

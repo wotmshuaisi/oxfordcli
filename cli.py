@@ -43,14 +43,10 @@ def main_program():
 if __name__ == '__main__':
     # init part
     initlogger()
-    try:
-        myScreen = curses.initscr()
-        curses.start_color()
+    myScreen = curses.initscr()
 
-        utils.init_color_pair()
+    curses.start_color()
 
-        main_program()
-    except Exception as e:
-        print(e)
-    finally:
-        curses.endwin()
+    utils.init_color_pair()
+    # main_program
+    main_program()

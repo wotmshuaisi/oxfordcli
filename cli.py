@@ -11,7 +11,8 @@ def main_program():
     senses = ''
 
     myScreen.erase()
-    # myScreen.addstr(1, 1, '> '  )
+    myScreen.addstr(1, 1, '> ' + ''.join(word),\
+        curses.color_pair(1) | curses.A_BOLD)
 
     while key != 27:
         key = myScreen.getch(1, 3 + len(word))

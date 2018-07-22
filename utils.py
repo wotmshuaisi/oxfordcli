@@ -10,6 +10,7 @@ def init_color_pair():
     curses.init_pair(1, curses.COLOR_GREEN, curses.COLOR_BLACK)
     curses.init_pair(2, curses.COLOR_MAGENTA, curses.COLOR_BLACK)
     curses.init_pair(3, curses.COLOR_YELLOW, curses.COLOR_BLACK)
+    curses.init_pair(4, curses.COLOR_RED, curses.COLOR_BLACK)
 
 
 def color_add_senses(context, screen_obj):
@@ -51,5 +52,10 @@ def color_add_senses(context, screen_obj):
         screen_obj.addstr(i + 2, 1, str_list[i - 2])
 
 
-def color_add_autocomplete(context, screen_obj):
-    pass
+def color_add_autocomplete(auto_list, screen_obj):
+    position = 0
+    for i, v in enumerate(auto_list):
+        temp_str = '{}.{}'.format(i, v)
+        screen_obj.addstr(
+            2, position, temp_str, curses.color_pair(4))
+        position += len(temp_str) + 1

@@ -10,14 +10,14 @@ senses:
 """
 
 senses_format = """    {index}.
-    short definitions: {sd}
     definitions: {d}
+    short definitions: {sd}
     subsenses: {sub}"""
 
 sub_senses_format = """
         {index}.
-        short definitions: {sd}
-        definitions: {d}"""
+        definitions: {d}
+        short definitions: {sd}"""
 
 
 

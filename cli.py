@@ -1,6 +1,8 @@
 import curses
 from log.logger import initlogger
 from oxford import oxford
+import utils
+
 
 
 def main_program():
@@ -8,9 +10,8 @@ def main_program():
     key = ''
     senses = ''
 
-    curses.init_pair(1, curses.COLOR_BLUE, curses.COLOR_BLACK)
     myScreen.erase()
-    myScreen.addstr(1, 1, '> '  )
+    # myScreen.addstr(1, 1, '> '  )
 
     while key != 27:
         key = myScreen.getch(1, 3 + len(word))
@@ -27,8 +28,8 @@ def main_program():
             pass
         elif key == 10:
             senses = oxford.get_word_sense(''.join(word))
-        myScreen.addstr(1, 1, '> ' + ''.join(word))
-        myScreen.addstr(2, 1, senses)
+            utils.color_add_str(senses, myScreen)
+        myScreen.addstr(1, 1, '> ' + ''.join(word), curses.color_pair(1) | curses.A_BOLD)
         myScreen.refresh()
 
 if __name__ == '__main__':
@@ -36,6 +37,9 @@ if __name__ == '__main__':
     try:
         myScreen = curses.initscr()
         curses.start_color()
+
+        utils.init_color_pair()
+
         main_program()
     finally:
         curses.endwin()

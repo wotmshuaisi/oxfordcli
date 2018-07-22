@@ -1,6 +1,7 @@
 import requests
 import logging
 import json
+import time
 from config import config
 from oxford import datafilter
 
@@ -24,14 +25,14 @@ class OxfordHTTPClient(object):
     def send_request(self, url, headers):
         try:
             r_obj = requests.get(url, headers=headers)
-            logging.info("OxfordHTTPClient response" + str(r_obj.status_code))
+            logging.info("OxfordHTTPClient response {}".format(r_obj.status_code))
             if r_obj.status_code == 200:
                 return True, r_obj.text
             else:
-                logging.error("OxfordHTTPClient send request" + str(r_obj.text))
+                logging.error("OxfordHTTPClient response error\n{}".format(r_obj.text))
                 return False, ""
         except Exception as e:
-            logging.error("OxfordHTTPClient send request" + str(e))
+            logging.error("OxfordHTTPClient send request {}".format(e))
 
     def get_word_entries(self, word):
         r_url = "{}/entries/en/{}".format(self.basic_url, word)

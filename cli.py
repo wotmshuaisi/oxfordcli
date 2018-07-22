@@ -29,6 +29,10 @@ def main_program():
             # auto complete
             auto_list = oxford.get_auto_word(''.join(word))
             utils.color_add_autocomplete(auto_list, myScreen)
+        elif key >= 49 and key <= 54:
+            choice = int(chr(key))
+            if len(auto_list) >= choice:
+                word = list(auto_list[choice - 1])
         elif key == 10:
             # get senses
             senses = oxford.get_word_sense(''.join(word))

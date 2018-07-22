@@ -55,7 +55,7 @@ def color_add_senses(context, screen_obj):
 def color_add_autocomplete(auto_list, screen_obj):
     position = 0
     for i, v in enumerate(auto_list):
-        temp_str = '{}.{}'.format(i, v)
+        temp_str = '{}.{}'.format(i+1, v)
         screen_obj.addstr(
             2, position, temp_str, curses.color_pair(4))
         position += len(temp_str) + 1

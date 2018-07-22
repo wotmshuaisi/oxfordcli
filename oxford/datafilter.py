@@ -1,4 +1,5 @@
 import json
+import re
 from copy import deepcopy
 
 senses_format = {
@@ -38,3 +39,9 @@ def filter_word_sense(o_data):
 
         entries_result.append(temp_entries)
     return entries_result
+
+def filter_auto_complete(o_data):
+    result = re.findall(r'([a-zA-Z ]+)<\\\/a>', o_data)
+    if len(result) > 6:
+        return result[:6]
+    return result

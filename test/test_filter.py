@@ -9,6 +9,12 @@ if __name__ == "__main__":
     from oxford import client
 
     c = client.OxfordHTTPClient()
-    result = c.get_word_entries("hello")
-    with open("test.json", "w") as target:
-        target.write(json.dumps(result))
+
+    # - word filter -
+    # result = c.get_word_entries("hello")
+    # with open("test.json", "w") as target:
+    #     target.write(json.dumps(result))
+
+    # - auto complete filter -
+    result = c.get_auto_complete("hell")
+    print(result)

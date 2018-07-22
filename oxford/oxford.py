@@ -19,9 +19,6 @@ sub_senses_format = """
         definitions: {d}
         short definitions: {sd}"""
 
-
-
-
 def get_word_sense(word):
     o_data = oxford_client.get_word_entries(word)
     result = ""
@@ -44,3 +41,6 @@ def get_word_sense(word):
             type=word_type['type'], ps=", ".join(word_type['phoneticSpelling']), ss=temp_senses)
         result += temp_desc
     return result
+
+def get_auto_word(word_part):
+    return oxford_client.get_auto_complete(word_part)

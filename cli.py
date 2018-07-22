@@ -7,6 +7,7 @@ import utils
 
 def main_program():
     word = []
+    auto_list = []
     key = ''
     senses = ''
 
@@ -26,14 +27,17 @@ def main_program():
             word.append(chr(key))
         elif key == 9:
             # auto complete
-            pass
+            auto_list = oxford.get_auto_word(''.join(word))
+            utils.color_add_autocomplete(auto_list, myScreen)
         elif key == 10:
+            # get senses
             senses = oxford.get_word_sense(''.join(word))
-            utils.color_add_str(senses, myScreen)
+            utils.color_add_senses(senses, myScreen)
         myScreen.addstr(1, 1, '> ' + ''.join(word), curses.color_pair(1) | curses.A_BOLD)
         myScreen.refresh()
 
 if __name__ == '__main__':
+    # init part
     initlogger()
     try:
         myScreen = curses.initscr()
@@ -42,5 +46,7 @@ if __name__ == '__main__':
         utils.init_color_pair()
 
         main_program()
+    except Exception as e:
+        print(e)
     finally:
         curses.endwin()

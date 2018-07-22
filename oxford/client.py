@@ -8,7 +8,8 @@ from oxford import datafilter
 
 class OxfordHTTPClient(object):
 
-    def __init__(self, basic_url="https://od-api.oxforddictionaries.com/api/v1", auto_complete_url="https://en.oxforddictionaries.com/search?query={}&filter=dictionary"):
+    def __init__(self, basic_url="https://od-api.oxforddictionaries.com/api/v1", \
+        auto_complete_url="https://en.oxforddictionaries.com/search?query={}&filter=dictionary"):
         self.basic_url = basic_url
         self.auto_complete_url = auto_complete_url
 
@@ -40,3 +41,10 @@ class OxfordHTTPClient(object):
         if status == False:
             return None
         return datafilter.filter_word_sense(r_data)
+
+    def get_auto_complete(self, word_part):
+        r_url = self.auto_complete_url.format(word_part)
+        status, r_data = self.send_request(r_url, self.auto_complete_headers)
+        if status == False:
+            return None
+        return datafilter.filter_auto_complete(r_data)

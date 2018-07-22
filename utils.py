@@ -12,7 +12,7 @@ def init_color_pair():
     curses.init_pair(3, curses.COLOR_YELLOW, curses.COLOR_BLACK)
 
 
-def color_add_str(context, screen_obj):
+def color_add_senses(context, screen_obj):
     str_list = context.split('\n')
     context_length = len(str_list)
     for i in range(2, context_length + 2):
@@ -49,3 +49,7 @@ def color_add_str(context, screen_obj):
                 curses.A_BOLD)
             continue
         screen_obj.addstr(i + 2, 1, str_list[i - 2])
+
+
+def color_add_autocomplete(context, screen_obj):
+    pass

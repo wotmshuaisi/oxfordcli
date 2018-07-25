@@ -18,10 +18,11 @@ base on python3, a tool used to explain English word meaning, data from en.oxfor
 - `enter` search
 - `q` quit
 - `1-6` choose word
+- `↑ && ↓` scroll up && scroll down
 
 ## TODO
 
 1. add history && bookmark
-2. fix content oversize can't display
+2. ~~fix content oversize can't display~~
 3. add `oxford_cli` to user command
 4. ...

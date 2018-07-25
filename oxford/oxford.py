@@ -6,8 +6,7 @@ oxford_client = OxfordHTTPClient()
 word_desciption_format = """{type}
 phonetic spelling: {ps}
 senses: 
-{ss}
-"""
+{ss}"""
 
 senses_format = """    {index}.
     definitions: {d}

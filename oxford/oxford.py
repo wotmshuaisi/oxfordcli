@@ -27,9 +27,11 @@ def get_word_sense(word):
     o_data = oxford_client.get_word_entries(word)
     result = ""
     for word_type in o_data:
-        temp_desc = deepcopy(word_desciption_format)
-        temp_senses = deepcopy(senses_format)
+
+        temp_desc = ""
+        temp_senses = ""
         subsenses = ""
+
         for i, s in enumerate(word_type.get('senses')):
             temp_sub_senses = ""
             for ii, ss in enumerate(s.get('subsenses')):
@@ -38,14 +40,14 @@ def get_word_sense(word):
                     index=ii+1, d=', '.join(ss['definitions']), sd='; '.join(ss['short_definitions']))
                 subsenses += temp_sub_senses
 
-            temp_senses += temp_senses.format(
+            temp_senses += senses_format.format(
                 index=i+1, sd=', '.join(
                     s['short_definitions']),
                     d='; '.join(s['definitions']),
                     exp='; '.join(s['examples']),
                     sub=subsenses)
 
-        temp_desc = temp_desc.format(
+        temp_desc = word_desciption_format.format(
             type=word_type['type'], ps=", ".join(word_type['phoneticSpelling']), ss=temp_senses)
         result += temp_desc
     return result

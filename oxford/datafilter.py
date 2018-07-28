@@ -1,10 +1,12 @@
 import json
 import re
+import logging
 from copy import deepcopy
 
 senses_format = {
     'definitions': '',
     'subsenses': [],
+    'examples': '',
 }
 
 entries_format = {
@@ -12,6 +14,21 @@ entries_format = {
     'phoneticSpelling': [],
     'senses': [],
 }
+
+
+def get_empty(key, content):
+    default = []
+    if content.get(key):
+        # flag = 0
+        for item in content.get(key):
+            # if flag >= 1:
+                # break
+            for dictitem in item:
+                default.append(item[dictitem])
+                break
+                # flag += 1
+        return default
+    return default
 
 
 def filter_word_sense(o_data):
@@ -25,13 +42,14 @@ def filter_word_sense(o_data):
         temp_entries = deepcopy(entries_format)
         temp_entries['type'] = item.get('lexicalCategory')
         temp_entries['phoneticSpelling'] = [i['phoneticSpelling'] for i in item['pronunciations']]
-        
+
         iter_entrie = item.get('entries')
         for entrie in iter_entrie:
             for subitem in entrie['senses']:
                 temp_senses = deepcopy(senses_format)
                 temp_senses['definitions'] = [i for i in subitem.get('definitions')]
                 temp_senses['short_definitions'] = [i for i in subitem.get('short_definitions')]
+                temp_senses['examples'] = get_empty('examples', subitem)
                 subsenses = subitem.get('subsenses')
                 if subsenses:
                     temp_senses['subsenses'] = [{'definitions': i['definitions'], 'short_definitions': i['short_definitions']} for i in subsenses]

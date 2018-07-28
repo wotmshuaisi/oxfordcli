@@ -71,8 +71,8 @@ class OxfordOutPutUtils(object):
 
     def scroll(self, str_list, cur_position, line_num, down=True):
         str_list_len = len(str_list)
-        logging.info("str_len %s line_num %s cur_position %s self.position %s" \
-            % (str_list_len, line_num, cur_position, self.position))
+        # logging.info("str_len %s line_num %s cur_position %s self.position %s" \
+            # % (str_list_len, line_num, cur_position, self.position))
         if line_num >= str_list_len:
             self.color_add_senses(str_list)
             return 0

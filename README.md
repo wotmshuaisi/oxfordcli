@@ -14,9 +14,9 @@ base on python3, a tool used to explain English word meaning, data from en.oxfor
 
 ## keybinding
 
-- `tab` autocompute
+- `tab` autocomplete
 - `enter` search
-- `q` quit
+- `ESC` quit
 - `1-6` choose word
 - `↑ && ↓` scroll up && scroll down
 

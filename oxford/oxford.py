@@ -30,13 +30,11 @@ def get_word_sense(word):
 
         temp_desc = ""
         temp_senses = ""
-        subsenses = ""
 
         for i, s in enumerate(word_type.get('senses')):
-            temp_sub_senses = ""
+            subsenses = ""
             for ii, ss in enumerate(s.get('subsenses')):
-                temp_sub_senses = deepcopy(sub_senses_format)
-                temp_sub_senses = temp_sub_senses.format(
+                temp_sub_senses = sub_senses_format.format(
                     index=ii+1, d=', '.join(ss['definitions']), sd='; '.join(ss['short_definitions']))
                 subsenses += temp_sub_senses
 

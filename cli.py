@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import curses
 from log.logger import initlogger
 from oxford import oxford

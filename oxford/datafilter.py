@@ -16,7 +16,7 @@ entries_format = {
 }
 
 
-def get_empty(key, content):
+def get_empty_list(key, content):
     default = []
     if content.get(key):
         # flag = 0
@@ -29,6 +29,12 @@ def get_empty(key, content):
                 # flag += 1
         return default
     return default
+
+
+def get_empty_str(key, content):
+    if content.get(key):
+        return content.get(key)
+    return ''
 
 
 def filter_word_sense(o_data):
@@ -47,12 +53,16 @@ def filter_word_sense(o_data):
         for entrie in iter_entrie:
             for subitem in entrie['senses']:
                 temp_senses = deepcopy(senses_format)
-                temp_senses['definitions'] = [i for i in subitem.get('definitions')]
-                temp_senses['short_definitions'] = [i for i in subitem.get('short_definitions')]
-                temp_senses['examples'] = get_empty('examples', subitem)
+                temp_senses['definitions'] = \
+                    [i for i in get_empty_str('definitions', subitem)]
+                temp_senses['short_definitions'] = \
+                    [i for i in subitem.get('short_definitions')]
+                temp_senses['examples'] = get_empty_list('examples', subitem)
+                temp_senses['subsenses'] = ''
                 subsenses = subitem.get('subsenses')
-                if subsenses:
-                    temp_senses['subsenses'] = [{'definitions': i['definitions'], 'short_definitions': i['short_definitions']} for i in subsenses]
+                if subsenses != None:
+                    temp_senses['subsenses'] = [{'definitions': get_empty_str(
+                        'definitions', i), 'short_definitions': i['short_definitions']} for i in subsenses]
                 temp_entries['senses'].append(temp_senses)
 
         entries_result.append(temp_entries)

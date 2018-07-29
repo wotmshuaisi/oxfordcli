@@ -14,7 +14,8 @@ class OxfordOutPutUtils(object):
 
     # keywords
     word_classes = ['Noun', 'Verb', 'Adjective', 'Adverb', 'Pronoun',
-        'Preposition', 'Conjunction', 'Determiner', 'Exclamation', 'Interjection']
+        'Preposition', 'Conjunction', 'Determiner', 'Exclamation', 'Interjection',
+        'Idiomatic',]
 
     def __init__(self, screen_obj):
         self.screen_obj = screen_obj

@@ -47,7 +47,8 @@ def filter_word_sense(o_data):
     for item in o_data:
         temp_entries = deepcopy(entries_format)
         temp_entries['type'] = item.get('lexicalCategory')
-        temp_entries['phoneticSpelling'] = [i['phoneticSpelling'] for i in item['pronunciations']]
+        temp_entries['phoneticSpelling'] = [i['phoneticSpelling'] \
+            for i in get_empty_str('pronunciations', item)]
 
         iter_entrie = item.get('entries')
         for entrie in iter_entrie:
@@ -56,7 +57,7 @@ def filter_word_sense(o_data):
                 temp_senses['definitions'] = \
                     [i for i in get_empty_str('definitions', subitem)]
                 temp_senses['short_definitions'] = \
-                    [i for i in subitem.get('short_definitions')]
+                    [i for i in get_empty_str('short_definitions', subitem)]
                 temp_senses['examples'] = get_empty_list('examples', subitem)
                 temp_senses['subsenses'] = ''
                 subsenses = subitem.get('subsenses')

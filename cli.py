@@ -25,9 +25,6 @@ def main_program():
         key = myScreen.getch(1, 3 + len(word))
         myScreen.erase()
 
-        utils_obj.color_add_autocomplete(auto_list)
-        utils_obj.color_add_senses(str_list)
-
         if key == 263 and len(word) != 0:
             #  back space
             word.pop()
